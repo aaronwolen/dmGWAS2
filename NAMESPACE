@@ -1,0 +1,1 @@
+export (estimate_lambda, dms, generate_edge_weight, generate_graph, chooseModule, SNP2Gene.match, PCombine, statResults, simpleChoose, dualEval, moduleChoose, zn.permutation)
