@@ -1,3 +1,42 @@
+#' Dense module search function
+#' 
+#' \code{\link{dms}} constructs a node- and edge-weighted PPI network, performs
+#' dense module searching, generates simulation data from random networks,
+#' normalizes module scores using simulation data, removes un-qualified modules,
+#' and orders resultant modules according to their significance.
+#' 
+#' @param network A data frame containing a symbolic edge list of the PPI
+#'   network
+#' @param geneweight A data frame containing two columns: the first is unique 
+#'   gene identifier (should be coordinate with the node symbol used in PPI); 
+#'   the second is gene-based p-value derived from GWAS
+#' @param expr1 A data frame containing gene expression data from case samples.
+#'   The first column is gene identifier (should be coordinate with the node
+#'   symbol used in PPI
+#' @param expr2 A data frame containing gene expression data from control
+#'   samples. The first column should be the same as expr1
+#' @param d An integer used to define the order of neighbour genes to be
+#'   searched. This parameter is always set up as 1 in dmGWAS_3.0, but could be
+#'   1 or 2 in dmGWAS_1.0 and dmGWAS_2.X
+#' @param r A float indicating the cut-off for increment during module expanding
+#'   process. Greater r will generate smaller module. Default is 0.1.
+#' @param lambda A float between 0 and 1 to balance node and edge weights.
+#'   dmGWAS_NEW will estimate it by default
+#'   
+#' @return A list containing all important data including the node- and
+#'   edge-weighted network used for searching, resultant dense module list,
+#'   module score matrix containing Sm and Sn, and randomization data for
+#'   normalization.
+#'   
+#' A resultant file '*.RData' is also automatically saved in the working folder
+#' for future record.
+#' 
+#' @examples 
+#' \dontrun{
+#'  res.list <- dms(network, geneweight, expr1, expr2, r=0.1)
+#' }
+#' 
+#' @export
 
 dms <-
 function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="default")

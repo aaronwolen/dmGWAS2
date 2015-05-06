@@ -1,3 +1,24 @@
+#' Estimate the parameter lambda
+#' 
+#' Lambda is a parameter to balance node and edge weight when expanding modules.
+#' This function will estimate it when it is not specified. This function is
+#' generally called by function \code{\link{dms}}. Typically users do not need
+#' to call it.
+#' 
+#' @param G a node- and edge-weighted PPI network, which can be generated from
+#'   \code{\link{generate_graph}}
+#' 
+#' @return 
+#' A float between 0 and 1.
+#' 
+#' @examples
+#' \dontrun{
+#' G <- generate_graph(expr1, expr2 , network, geneweight)
+#' lambda <- estimate_lambda(G) 
+#' }
+#' 
+#' @seealso \code{\link{generate_graph}}
+#' @export
 
 estimate_lambda<-function(G)
 {
@@ -32,5 +53,3 @@ estimate_lambda<-function(G)
  } 
  round(1/(1+median(l.zperm)),2)
 } 
-
-

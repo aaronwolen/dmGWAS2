@@ -1,3 +1,17 @@
+#' Build background PPI Network
+#' 
+#' \code{\link{generate_graph}} constructs a node- and edge-weighted PPI network
+#' for function \code{\link{dms}}. This function is generally called by function
+#' \code{\link{dms}}. Typically users do not need to call it.
+#' 
+#' @inheritParams dms
+#' 
+#' @examples
+#' \dontrun{
+#' G<- generate_graph (expr1, expr2, network, geneweight) 
+#' }
+#' 
+#' @export
 
 generate_graph<-function(expr1,expr2=NULL,network,geneweight)
 {

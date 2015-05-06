@@ -1,3 +1,21 @@
+#' Compute edge weight
+#' 
+#' \code{\link{generate_edge_weight}} computes differential gene co-expression 
+#' (i.e., the change of gene co-expression between case and control samples) to 
+#' infer the edge weight of PPI network. \code{\link{generate_edge_weight}} is 
+#' generally called by \code{\link{generate_graph}}. Typically users do not need
+#' to call it.
+#'
+#' @inheritParams dms
+#'   
+#' @return A co-expression matrix is returned
+#'   
+#' @examples 
+#' \dontrun{
+#' edgeweight <- generate_edge_weight(expr1, expr2, network, geneweight) 
+#' }
+#' 
+#' @export
 
 generate_edge_weight<-function(expr1,expr2,network,geneweight)
 {
@@ -68,10 +86,3 @@ generate_edge_weight<-function(expr1,expr2,network,geneweight)
   return(rewire)
  } 
 }
-
-
-
-
-
-
-
