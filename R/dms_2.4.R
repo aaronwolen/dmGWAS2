@@ -76,9 +76,6 @@ function(gene.map, method='NULL')
 statResults <-
 function(res.list, top=500)
 {
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}	
 	sets.length <- c()
 	sets.cc <- c()
 	sets.as <- c()
@@ -112,10 +109,6 @@ function(res.list, top=500)
 simpleChoose <-
 function(res.list, top=0.01, plot=FALSE)
 {
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}
-    
       if (top<1 & top>0) 
         top<-round(nrow(res.list$zi.ordered)*top)      
 	
@@ -185,9 +178,6 @@ function(resfile1, resfile2)
 moduleChoose <-
 function(seed.nodes, res.list, plot=FALSE)
 {
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}	
 	match(seed.nodes, names(res.list$genesets.clear)) -> idx
 	module.nodes = unique(unlist(res.list$genesets.clear[idx]))
 	subG = induced.subgraph(res.list$GWPI, module.nodes)
@@ -278,9 +268,6 @@ zn.permutation <- function(module.list, gene2snp, gene2snp.method="smallest", or
 
 integGM <-
 function (G, genes, weights, simplify=T){
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}
 	if (is.element("weight", list.vertex.attributes(G))) {
 		cat("Warning: previous G node weight replaced!\n")
 	}
@@ -295,9 +282,6 @@ function (G, genes, weights, simplify=T){
 
 node2treePath <-
 function (G, Tnodes, node){
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}
 	tmp.path <- get.all.shortest.paths(G, node, Tnodes)$res
 	tmp.l <- unlist(lapply(tmp.path, length))
 	index <- which(tmp.l == min(tmp.l))
@@ -315,9 +299,6 @@ function (G, Tnodes, node){
 
 seedQueryJ_2.4 <-
 function (G, seed, search_r = 2, r = 0.1){
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}
 	net <- G
 	d <- search_r
 	if (!is.element("name", list.vertex.attributes(net))) {
@@ -360,9 +341,6 @@ function (G, seed, search_r = 2, r = 0.1){
 
 globalQueryJ_2.4 <-
 function (G, search_r = 2, r = 0.2, min.size=5){
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}	
 	sublist = list()
 	for (node in V(G)$name) {
 		ng <- seedQueryJ_2.4(G, node, search_r, r)
@@ -379,7 +357,6 @@ function(network, gene2weight, d=2, r=0.1)
 ######################################## Starting dense module searching #########################################
 ####################################################################################################################
 #==================================================================================================================#
-library(igraph)
 
 if(min(gene2weight[,2])<=0 | max(gene2weight[,2])>=1)
 {

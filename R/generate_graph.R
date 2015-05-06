@@ -15,10 +15,6 @@
 
 generate_graph<-function(expr1,expr2=NULL,network,geneweight)
 {
- require(igraph)
- if(!require(igraph)) 
-  stop('igraph must be pre-installed!\n')
-
  if(sum(is.na(geneweight[,2]))>0) 
   stop("Have missing P values!\n") 
 

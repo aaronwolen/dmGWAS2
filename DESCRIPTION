@@ -6,8 +6,10 @@ Date: 2015-02-16
 Author: Quan Wang and Peilin Jia
 Maintainer: Quan Wang <quan.wang@vanderbilt.edu> and Peilin Jia
         <peilin.jia@vanderbilt.edu>
-Depends: R (>= 2.9.0), igraph
+Depends:
+    R (>= 2.9.0)
+Imports:
+    igraph
 Description: dmGWAS_3.0 implement our upgraded algorithm EW_dmGWAS, which searches for dense modules in a node- and edge-weighted PPI network.
 License: GPL (>= 2)
 URL: http://bioinfo.mc.vanderbilt.edu/dmGWAS
-Packaged: 2015-02-19 17:03:18 UTC; wangq6

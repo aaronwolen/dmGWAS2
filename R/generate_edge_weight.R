@@ -19,9 +19,6 @@
 
 generate_edge_weight<-function(expr1,expr2,network,geneweight)
 {
- if(!require(igraph)) 
- stop('igraph must be pre-installed!\n')
-
  if(is.null(expr2))
  {
   cat("Number of genes with node weight: ", length(geneweight[,1]), "\n", sep="")

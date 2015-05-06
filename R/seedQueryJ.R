@@ -4,8 +4,6 @@ function (G, seed, search_r = 1, r = 0.1, lambda=0.5)
  net <- G
  d <- search_r
  
- if (!require(igraph)) 
-  stop('igraph must be pre-installed!\n')
  if (!is.element("name", list.vertex.attributes(net))) 
   stop("Graph node must have 'name' attribute")
  if (!is.element("weight", list.vertex.attributes(net))) 

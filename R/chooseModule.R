@@ -28,10 +28,6 @@
 chooseModule<-
 function(res.list, top=0.01, plot=FALSE)
 {
-	if (!require(igraph)) {
-		stop('igraph must be pre-installed!\n')
-	}
-    
       if (top<1 & top>0) 
         top<-round(nrow(res.list$ordered.module.score.matrix)*top)      
 	

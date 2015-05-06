@@ -22,9 +22,6 @@
 
 estimate_lambda<-function(G)
 {
- if(!require(igraph)) 
-  stop('igraph must be pre-installed!\n')
-
  genes.idx <- V(G)$name
  l.zperm <- c()
 
