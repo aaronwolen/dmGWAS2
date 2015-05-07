@@ -133,6 +133,7 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
     } else {
       subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g))
       subsum
+    }
   }
   
   ms <- data.frame(gene = names(genesets.clear), Sm = -9, Sn = -9)
