@@ -6,3 +6,16 @@ calculate_score <- function(g, lambda) {
   }
   return(subsum)
 }
+
+
+# Return in.nodes vertex that maximizes the out.nodes subgraph's score
+find_best_node <- function(g, in.nodes, out.nodes, lambda) {
+  
+  # recalculate out.nodes score with each in.node
+  subGs <- sapply(out.nodes, c, in.nodes, simplify = FALSE)
+  subGs <- lapply(subGs, induced.subgraph, graph = g)
+  scores <- vapply(subGs, calculate_score, FUN.VALUE = numeric(1), lambda)
+  
+  best <- scores[which.max(scores)]
+  list(node = names(best), score = as.numeric(best))
+}

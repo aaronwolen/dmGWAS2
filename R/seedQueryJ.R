@@ -11,21 +11,6 @@ function (G, seed, search_r = 1, r = 0.1, lambda=0.5)
  if (!is.element("weight", list.edge.attributes(net))) 
   stop("Graph edge must have 'weight' attribute")
 
- find_best_node<-function(in.nodes,out.nodes)  
- {
-  score<-(-Inf); best<-character()
-  for(node in out.nodes)
-  {
-   subG.update<-induced.subgraph(net, c(in.nodes,node))
-   if( calculate_score(subG.update, lambda) > score )
-   {
-    score<-calculate_score(subG.update, lambda)
-    best<-node
-   }
-  }
-  list("node"=best,"score"=score)
- }
-
  subG <- induced.subgraph(net, seed)
  if (!is.connected(subG))    		                 #### the seed must be connected
   stop("Input seeds are disjoint")
@@ -42,9 +27,9 @@ function (G, seed, search_r = 1, r = 0.1, lambda=0.5)
    out.nodes <- setdiff(pot.nodes, in.nodes)
    if (length(out.nodes) == 0) break
    
-   best_node<-find_best_node(in.nodes, out.nodes) 
    new_score<-best_node$score
    best_node<-best_node$node  
+   best_node <- find_best_node(in.nodes, out.nodes, lambda) 
  
    if (new_score > subsum * (1 + r))
     subG <- induced.subgraph(net, c(V(subG)$name, best_node))
