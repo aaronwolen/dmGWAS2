@@ -125,21 +125,10 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   	genesets.length.null.stat[[as.character(k)]] <- c(k.mean, k.sd)
   }
   
-  # Normalization
-  calculate_score <- function(g) {
-    
-    if (ecount(g) > 0) {
-      subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g)) + lambda*sum(E(g)$weight)/sqrt(ecount(g))
-    } else {
-      subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g))
-      subsum
-    }
-  }
-  
   ms <- data.frame(gene = names(genesets.clear), Sm = -9, Sn = -9)
   
   for (k in 1:length(genesets.clear)) {
-    ms[k,2] <- calculate_score(dm.result[[k]])
+    ms[k,2] <- calculate_score(dm.result[[k]], lambda)
     tmp <- genesets.length.null.stat[[as.character(vcount(dm.result[[k]]))]]
     ms[k, 3] <- (ms[k,2] - tmp[1]) / tmp[2]
   }

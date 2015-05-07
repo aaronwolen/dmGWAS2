@@ -11,23 +11,15 @@ function (G, seed, search_r = 1, r = 0.1, lambda=0.5)
  if (!is.element("weight", list.edge.attributes(net))) 
   stop("Graph edge must have 'weight' attribute")
 
- calculate_score<-function(g)
- {
-  if( ecount(g)>0 )                                ### at the first search step, seed don't have edges                           
-  subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g)) + lambda*sum(E(g)$weight)/sqrt(ecount(g)) else
-  subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g))
-  subsum
- }
-
  find_best_node<-function(in.nodes,out.nodes)  
  {
   score<-(-Inf); best<-character()
   for(node in out.nodes)
   {
    subG.update<-induced.subgraph(net, c(in.nodes,node))
-   if( calculate_score(subG.update) > score )
+   if( calculate_score(subG.update, lambda) > score )
    {
-    score<-calculate_score(subG.update)
+    score<-calculate_score(subG.update, lambda)
     best<-node
    }
   }
@@ -41,7 +33,7 @@ function (G, seed, search_r = 1, r = 0.1, lambda=0.5)
  {
   in.nodes <- V(subG)$name
   node_num <- vcount(subG)
-  subsum <- calculate_score(subG)  
+  subsum <- calculate_score(subG, lambda)  
 
   for (rad in 1:d)                                   ### in our algorithm, only consider the first order neighbors
   {     

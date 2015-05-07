@@ -1,14 +1,6 @@
 
-random_network<-function(size,G,lambda)
-{
- calculate_score<-function(g)
- {
-  if( ecount(g)>0 )                                                        
-  subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g)) + lambda*sum(E(g)$weight)/sqrt(ecount(g)) else
-  subsum <- (1-lambda)*sum(V(g)$weight)/sqrt(vcount(g))
-  subsum
- } 
- 
+random_network<-function(size,G,lambda) {
+
  genes.idx <- V(G)$name
  
  l.zperm <- c()
@@ -23,7 +15,7 @@ random_network<-function(size,G,lambda)
     seed<-c(seed,sample(tmp.neigh,1)) else break 
   }
   if( length(seed)==size )
-   l.zperm <- c(l.zperm,calculate_score(induced.subgraph(G,seed)))
+   l.zperm <- c(l.zperm, calculate_score(induced.subgraph(G,seed), lambda))
  } 
  l.zperm
 } 
