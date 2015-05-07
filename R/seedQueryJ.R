@@ -24,7 +24,7 @@ seedQueryJ <- function (G, seed, search_r = 1, r = 0.1, lambda=0.5) {
    out.nodes <- setdiff(pot.nodes, in.nodes)
    if (length(out.nodes) == 0) break
    
-   best_node <- find_best_node(in.nodes, out.nodes, lambda)
+   best_node <- find_best_node(G, in.nodes, out.nodes, lambda)
    new_score <- best_node$score
    best_node <- best_node$node  
  
