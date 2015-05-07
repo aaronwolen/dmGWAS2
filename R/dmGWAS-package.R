@@ -34,4 +34,5 @@
 #' @docType package
 #' @name dmGWAS-package
 #' @aliases dmGWAS
+#' @import igraph
 NULL
