@@ -10,6 +10,9 @@ Depends:
     R (>= 2.9.0)
 Imports:
     igraph
+Suggests:
+    foreach,
+    doParallel
 Description: dmGWAS_3.0 implement our upgraded algorithm EW_dmGWAS, which searches for dense modules in a node- and edge-weighted PPI network.
 License: GPL (>= 2)
 URL: http://bioinfo.mc.vanderbilt.edu/dmGWAS
