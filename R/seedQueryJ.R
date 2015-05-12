@@ -1,15 +1,14 @@
 seedQueryJ <- function (G, seed, search_r = 1, r = 0.1, lambda=0.5) {
- net <- G
  d <- search_r
  
- if (!is.element("name", list.vertex.attributes(net))) 
+ if (!is.element("name", list.vertex.attributes(G))) 
   stop("Graph node must have 'name' attribute")
- if (!is.element("weight", list.vertex.attributes(net))) 
+ if (!is.element("weight", list.vertex.attributes(G))) 
   stop("Graph node must have 'weight' attribute")
- if (!is.element("weight", list.edge.attributes(net))) 
+ if (!is.element("weight", list.edge.attributes(G))) 
   stop("Graph edge must have 'weight' attribute")
 
- subG <- induced.subgraph(net, seed)
+ subG <- induced.subgraph(G, seed)
  if (!is.connected(subG)) stop("Input seeds are disjoint")
  
  while (TRUE) {
@@ -19,8 +18,8 @@ seedQueryJ <- function (G, seed, search_r = 1, r = 0.1, lambda=0.5) {
 
   ### in our algorithm, only consider the first order neighbors
   for (rad in 1:d) {     
-   tmp.neigh <- unlist(neighborhood(net, order = rad, nodes = V(subG)$name)) 
-   pot.nodes <- V(net)[tmp.neigh]$name
+   tmp.neigh <- unlist(neighborhood(G, order = rad, nodes = V(subG)$name)) 
+   pot.nodes <- V(G)[tmp.neigh]$name
    out.nodes <- setdiff(pot.nodes, in.nodes)
    if (length(out.nodes) == 0) break
    
@@ -29,7 +28,7 @@ seedQueryJ <- function (G, seed, search_r = 1, r = 0.1, lambda=0.5) {
    best_node <- best_node$node  
  
    if (new_score > subsum * (1 + r))
-    subG <- induced.subgraph(net, c(V(subG)$name, best_node))
+    subG <- induced.subgraph(G, c(V(subG)$name, best_node))
   }
   if (node_num == vcount(subG)) break
  }
