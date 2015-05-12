@@ -35,4 +35,5 @@
 #' @name dmGWAS-package
 #' @aliases dmGWAS
 #' @import igraph
+#' @importFrom parallel mclapply
 NULL

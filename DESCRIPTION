@@ -9,7 +9,8 @@ Maintainer: Quan Wang <quan.wang@vanderbilt.edu> and Peilin Jia
 Depends:
     R (>= 2.9.0)
 Imports:
-    igraph
+    igraph,
+    parallel
 Suggests:
     foreach,
     doParallel
