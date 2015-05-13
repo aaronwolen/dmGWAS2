@@ -76,13 +76,12 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   message("permutation on random network...\n", sep="")
   
   genesets.length <- unique(as.numeric(lapply(dm.result, vcount)))
-  genesets.length.null.dis <- list()
   
   message("module size: ")
-  for (k in 5:max(genesets.length)) { 
-    message(k, ".", sep="")
-    genesets.length.null.dis[[as.character(k)]] <- random_network(size=k,G=GWPI,lambda)
-  }
+  genesets.length.null.dis <- mclapply(5:max(genesets.length), 
+                                       random_network, G = GWPI, lambda = lambda,
+                                       mc.cores = .cores())
+  names(genesets.length.null.dis) <- as.character(genesets.length))
   
   genesets.length.null.stat <- list()
   for (k in 5:max(genesets.length)) {
