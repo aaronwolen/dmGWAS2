@@ -22,4 +22,16 @@ Suggests:
     doParallel,
     testthat
 License: GPL (>= 2)
-
+Collate:
+    'chooseModule.R'
+    'dmGWAS2-package.R'
+    'dms.R'
+    'dms_2.4.R'
+    'estimate_lambda.R'
+    'generate_edge_weight.R'
+    'generate_graph.R'
+    'globalQueryJ.R'
+    'parallel.R'
+    'random_network.R'
+    'seedQueryJ.R' 
+    'utils.R'
