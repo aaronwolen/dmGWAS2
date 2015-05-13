@@ -19,5 +19,7 @@ Imports:
     digest
 Suggests: 
     foreach,
-    doParallel
+    doParallel,
+    testthat
 License: GPL (>= 2)
+
