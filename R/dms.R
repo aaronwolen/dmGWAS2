@@ -69,36 +69,8 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   
   # clean genesets by removing identical records
   message("removing identical modules...\n", sep="")
-  identical.idx <- list()
-  for (k in 1:length(genesets)) {
-  	tmp.idx <- c(k)
-  	
-  	for (kt in 1:length(genesets)) {
-  	  if (kt == k) next()
-  	  genesk <- genesets[[k]]
-  	  genest <- genesets[[kt]]
-  		if (length(genesk) != length(genest)) next()
-  		overlap <- intersect(genesk, genest)
-  		
-  		if (length(overlap) == length(genest)) {
-  			tmp.idx <- c(tmp.idx, kt)
-  		}
-  	}
-  	
-  	if (length(tmp.idx) > 1) {
-  	  tmp.idx <- sort(tmp.idx)
-  	  identical.idx[[seed.genes[k]]] <- tmp.idx
-  	}
-  }
-  
-  toremove.idx <- c()
-  for (k in 1:length(identical.idx)) {
-    tmp.idx <- identical.idx[[k]]
-    toremove.idx <- c(toremove.idx, tmp.idx[-1])
-  }
-  toremove.idx <- unique(toremove.idx)
-  genesets.clear <- genesets[-toremove.idx]
-  dm.result <- dm.result[-toremove.idx]
+  genesets <- deduplicate(genesets)
+  dm.result <- dm.result[names(genesets)]
   
   # random network
   message("permutation on random network...\n", sep="")
@@ -120,9 +92,9 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   	genesets.length.null.stat[[as.character(k)]] <- c(k.mean, k.sd)
   }
   
-  ms <- data.frame(gene = names(genesets.clear), Sm = -9, Sn = -9)
+  ms <- data.frame(gene = names(genesets), Sm = -9, Sn = -9)
   
-  for (k in 1:length(genesets.clear)) {
+  for (k in 1:length(genesets)) {
     ms[k,2] <- calculate_score(dm.result[[k]], lambda)
     tmp <- genesets.length.null.stat[[as.character(vcount(dm.result[[k]]))]]
     ms[k, 3] <- (ms[k,2] - tmp[1]) / tmp[2]
@@ -132,7 +104,7 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   # save results
   res.list <- list()
   res.list[["GWPI"]]                            = GWPI
-  res.list[["genesets.clear"]] 		              = genesets.clear
+  res.list[["genesets.clear"]] 		              = genesets
   res.list[["genesets.length.null.dis"]] 	      = genesets.length.null.dis
   res.list[["genesets.length.null.stat"]] 	    = genesets.length.null.stat
   res.list[["module.score.matrix"]]             = ms

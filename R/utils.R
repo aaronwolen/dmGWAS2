@@ -19,3 +19,11 @@ find_best_node <- function(g, in.nodes, out.nodes, lambda) {
   best <- scores[which.max(scores)]
   list(node = names(best), score = as.numeric(best))
 }
+
+# removes duplicate slots from a list
+# deduplicate(list(a = letters[1:2], b = letters[2:3], c = letters[1:2]))
+deduplicate <- function(x) {
+  stopifnot(is.list(x))
+  ids <- vapply(x, digest::digest, algo = "md5", FUN.VALUE = character(1))
+  x[!duplicated(ids)]
+}
