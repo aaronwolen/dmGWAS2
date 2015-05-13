@@ -64,12 +64,7 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   
   # extract genesets
   message("extracting modules...\n", sep="")
-  genesets <- list()
-  for(k in 1:length(dm.result)) {
-  	node = names(dm.result[k])
-  	g = dm.result[[k]]
-  	genesets[[node]] <- V(g)$name
-  }
+  genesets <- lapply(dm.result, get.vertex.attribute, name = "name")
   seed.genes <- names(genesets)
   
   # clean genesets by removing identical records
