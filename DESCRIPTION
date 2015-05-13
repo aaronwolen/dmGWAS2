@@ -26,7 +26,6 @@ Collate:
     'chooseModule.R'
     'dmGWAS2-package.R'
     'dms.R'
-    'dms_2.4.R'
     'estimate_lambda.R'
     'generate_edge_weight.R'
     'generate_graph.R'

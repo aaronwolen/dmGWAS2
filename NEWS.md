@@ -15,6 +15,8 @@
 
 ## Changes
 
+* Removed `dms_2.4()` (the functionality may be re-added later)
+
 * `dms()` no longer auto-exports an Rdata file
 
 * The list of results returned by `dmGWAS2::dms()` differs from `dmGWAS::dms()`:

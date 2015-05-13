@@ -42,11 +42,6 @@
 
 dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="default") {
 
-  if(is.null(expr1) & is.null(expr2)) {
-   res_no_edge <- dms_2.4(network,geneweight,d,r=0.1)
-   return (res_no_edge)
-  }
-  
   GWPI <- generate_graph(expr1,expr2,network,geneweight)
   
   if(lambda=="default") { 
