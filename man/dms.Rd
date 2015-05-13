@@ -33,10 +33,16 @@ process. Greater r will generate smaller module. Default is 0.1.}
   dmGWAS_NEW will estimate it by default}
 }
 \value{
-A list containing all important data including the node- and
-  edge-weighted network used for searching, resultant dense module list,
-  module score matrix containing Sm and Sn, and randomization data for
-  normalization.
+\code{dms} returns a list containing relevant data and results,
+  including:
+
+ \tabular{ll}{
+   \code{GWPI} \tab the edge-weighted network used for searching \cr
+   \code{genesets} \tab list of genes comprising each dense module, named for the seed gene \cr
+   \code{genesets.length.null.dis} \tab randomization data for normalization \cr
+   \code{module.score.matrix} \tab contains Sm and Sn \cr
+ }
+
 
 A resultant file '*.RData' is also automatically saved in the working folder
 for future record.

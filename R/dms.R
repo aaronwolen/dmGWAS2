@@ -23,10 +23,16 @@
 #' @param lambda A float between 0 and 1 to balance node and edge weights.
 #'   dmGWAS_NEW will estimate it by default
 #'   
-#' @return A list containing all important data including the node- and
-#'   edge-weighted network used for searching, resultant dense module list,
-#'   module score matrix containing Sm and Sn, and randomization data for
-#'   normalization.
+#' @return \code{dms} returns a list containing relevant data and results,
+#'   including:
+#'   
+#'  \tabular{ll}{
+#'    \code{GWPI} \tab the edge-weighted network used for searching \cr
+#'    \code{genesets} \tab list of genes comprising each dense module, named for the seed gene \cr
+#'    \code{genesets.length.null.dis} \tab randomization data for normalization \cr
+#'    \code{module.score.matrix} \tab contains Sm and Sn \cr
+#'  }
+#'   
 #'   
 #' A resultant file '*.RData' is also automatically saved in the working folder
 #' for future record.
@@ -97,18 +103,13 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   ms$Sn <- (ms$Sm - genesets.length.null.mean[ms$n]) / 
                     genesets.length.null.sd[ms$n]
 
-  # remove n to match output of previous versions
-  ms <- ms[-2]
-  ms_ordered <- ms[order(ms$Sn, decreasing = TRUE),]
   
-  # save results
-  res.list <- list()
-  res.list[["GWPI"]]                            = GWPI
-  res.list[["genesets.clear"]] 		              = genesets
-  res.list[["genesets.length.null.dis"]] 	      = genesets.length.null.dis
-  res.list[["genesets.length.null.stat"]] 	    = genesets.length.null.stat
-  res.list[["module.score.matrix"]]             = ms
-  res.list[["ordered.module.score.matrix"]]     = ms_ordered
+  res.list <- list(
+    GWPI                     = GWPI,
+    genesets                 = genesets,
+    genesets.length.null.dis = genesets.length.null.dis,
+    module.score.matrix      = ms
+  )
   
   if(lambda_default)
   save(res.list, file=paste("Lambda_",lambda,"_estimated_by_default_result.RData",sep=""))
