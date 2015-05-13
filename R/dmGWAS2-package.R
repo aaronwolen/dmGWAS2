@@ -1,21 +1,11 @@
-#' dmGWAS: Search for dense modules in a node- and edge-weighted PPI network
+#' dmGWAS2: Search for dense modules in a node- and edge-weighted PPI network
 #' 
-#' dmGWAS_3.0 is an upgraded version of dmGWAS. It constructs a node- and
-#' edge-weighted PPI network, performs dense module searching, generates
-#' simulation data from random networks, normalizes module scores using
-#' simulation data, removes unqualified modules, and orders resultant modules
-#' according to their significance.
+#' dmGWAS2 constructs a node- and edge-weighted PPI network, performs dense
+#' module searching, generates simulation data from random networks, normalizes
+#' module scores using simulation data, removes unqualified modules, and orders
+#' resultant modules according to their significance.
 #' 
 #' @details 
-#' 
-#' \tabular{ll}{
-#'   Package: \tab dmGWAS\cr
-#'   Type: \tab Package\cr
-#'   Version: \tab 3.0\cr
-#'   Date: \tab 2015-02-16\cr
-#'   License: \tab GPL (>= 2)\cr
-#' }
-#' 
 #' This package takes three types of data as input: a list of genes with
 #' association p-values, gene expression profiling in both case and control
 #' samples, and a human PPI network. \code{\link{generate_graph}} constructs a
@@ -32,8 +22,8 @@
 #' in preparation.
 #' 
 #' @docType package
-#' @name dmGWAS-package
-#' @aliases dmGWAS
+#' @name dmGWAS2-package
+#' @aliases dmGWAS2
 #' @import igraph
 #' @importFrom parallel mclapply
 NULL

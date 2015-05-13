@@ -1,11 +1,16 @@
-Package: dmGWAS
+Package: dmGWAS2
 Type: Package
-Title: dmGWAS package
-Version: 3.0
-Date: 2015-02-16
-Author: Quan Wang and Peilin Jia
-Maintainer: Quan Wang <quan.wang@vanderbilt.edu> and Peilin Jia
-        <peilin.jia@vanderbilt.edu>
+Version: 0.0.0.9000
+Title: A fork of EW_dmGWAS
+Description: dmGWAS2 is a fork of EW_dmGWAS, the edge-weighted dense module 
+    search algorithm for genome-wide association studies, which searches for
+    dense modules in a node- and edge-weighted PPI network.
+Authors@R: c(
+    person("Quan", "Wang", , "quan.wang@vanderbilt.edu", role = "aut"),
+    person("Peilin", "Jia", , "peilin.jia@vanderbilt.edu", role = "aut"),
+    person("Aaron", "Wolen", , "aaron@wolen.com", c("cre", "ctb"))
+    )
+URL: http://github.com/aaronwolen/dmGWAS
 Depends:
     R (>= 2.9.0)
 Imports:
@@ -15,6 +20,4 @@ Imports:
 Suggests: 
     foreach,
     doParallel
-Description: dmGWAS_3.0 implement our upgraded algorithm EW_dmGWAS, which searches for dense modules in a node- and edge-weighted PPI network.
 License: GPL (>= 2)
-URL: http://bioinfo.mc.vanderbilt.edu/dmGWAS
