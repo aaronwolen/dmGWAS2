@@ -31,7 +31,6 @@ Collate:
     'generate_edge_weight.R'
     'generate_graph.R'
     'globalQueryJ.R'
-    'parallel.R'
     'random_network.R'
     'seedQueryJ.R' 
     'utils.R'
