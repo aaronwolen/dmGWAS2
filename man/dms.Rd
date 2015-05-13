@@ -42,10 +42,6 @@ process. Greater r will generate smaller module. Default is 0.1.}
    \code{genesets.length.null.dis} \tab randomization data for normalization \cr
    \code{module.score.matrix} \tab contains Sm and Sn \cr
  }
-
-
-A resultant file '*.RData' is also automatically saved in the working folder
-for future record.
 }
 \description{
 \code{\link{dms}} constructs a node- and edge-weighted PPI network, performs

@@ -32,10 +32,6 @@
 #'    \code{genesets.length.null.dis} \tab randomization data for normalization \cr
 #'    \code{module.score.matrix} \tab contains Sm and Sn \cr
 #'  }
-#'   
-#'   
-#' A resultant file '*.RData' is also automatically saved in the working folder
-#' for future record.
 #' 
 #' @examples 
 #' \dontrun{
@@ -103,20 +99,13 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   ms$Sn <- (ms$Sm - genesets.length.null.mean[ms$n]) / 
                     genesets.length.null.sd[ms$n]
 
+  message("finished at ", format(Sys.time(), "%H:%M, %b %d %Y"), " ...\n", sep="")
   
-  res.list <- list(
+  list(
     GWPI                     = GWPI,
     genesets                 = genesets,
     genesets.length.null.dis = genesets.length.null.dis,
     module.score.matrix      = ms
   )
-  
-  if(lambda_default)
-  save(res.list, file=paste("Lambda_",lambda,"_estimated_by_default_result.RData",sep=""))
-  if(!lambda_default)
-  save(res.list, file=paste("Lambda_",lambda,"_specified_by_user_result.RData",sep=""))
-  
-  message("finished at ", format(Sys.time(), "%H:%M, %b %d %Y"), " ...\n", sep="")
-  return(res.list)
 }
 

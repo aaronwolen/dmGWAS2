@@ -16,14 +16,16 @@
 
 ## Changes
 
-The list of results returned by `dmGWAS2::dms()` differs from `dmGWAS::dms()`:
+* `dms()` no longer auto-exports an Rdata file
 
-  * `genesets.length.null.stat` is excluded since the mean and SD for each 
-    set of permuted scores can easily be calculated
+* The list of results returned by `dmGWAS2::dms()` differs from `dmGWAS::dms()`:
+
+    - `genesets.length.null.stat` is excluded since the mean and SD for each 
+      set of permuted scores can easily be calculated
     
-  * `ordered.module.score.matrix` is excluded since it can easily be recreated
+    - `ordered.module.score.matrix` is excluded since it can easily be recreated
   
-  * `module.score.matrix` gains a new column `n`, which gives the number of
-    vertices in each module
+    - `module.score.matrix` gains a new column `n`, which gives the number of
+      vertices in each module
     
-  * the `genesets.clear` slot has been renamed to `genesets`
+    - the `genesets.clear` slot has been renamed to `genesets`
