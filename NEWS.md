@@ -5,6 +5,7 @@
 * Dense module searches and permutations are performed when a parallel backend
   is registered with the foreach package
 * Documentation has been migrated to roxygen
+* Added Travis CI
 
 ## Minor improvements
 
