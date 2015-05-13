@@ -81,24 +81,25 @@ dms <- function(network, geneweight, expr1, expr2=NULL, d=1, r=0.1, lambda="defa
   genesets.length.null.dis <- mclapply(5:max(genesets.length), 
                                        random_network, G = GWPI, lambda = lambda,
                                        mc.cores = .cores())
-  names(genesets.length.null.dis) <- as.character(genesets.length))
+  names(genesets.length.null.dis) <- as.character(genesets.length)
   
-  genesets.length.null.stat <- list()
-  for (k in 5:max(genesets.length)) {
-  	l.zperm <- genesets.length.null.dis[[as.character(k)]]
-  	k.mean <- mean(l.zperm)
-  	k.sd <- sd(l.zperm)
-  	genesets.length.null.stat[[as.character(k)]] <- c(k.mean, k.sd)
-  }
+  genesets.length.null.mean <- vapply(genesets.length.null.dis, mean, numeric(1))
+  genesets.length.null.sd   <- vapply(genesets.length.null.dis, sd, numeric(1))
   
-  ms <- data.frame(gene = names(genesets), Sm = -9, Sn = -9)
-  
-  for (k in 1:length(genesets)) {
-    ms[k,2] <- calculate_score(dm.result[[k]], lambda)
-    tmp <- genesets.length.null.stat[[as.character(vcount(dm.result[[k]]))]]
-    ms[k, 3] <- (ms[k,2] - tmp[1]) / tmp[2]
-  }
-  ms_ordered <- ms[order(ms[,3], decreasing = TRUE), ]
+  # module score matrix
+  ms <- data.frame(
+    gene = names(genesets), 
+       n = as.character(vapply(dm.result, vcount, numeric(1))),
+      Sm = vapply(dm.result, calculate_score, lambda, FUN.VALUE = numeric(1)),
+    row.names = NULL, stringsAsFactors = FALSE
+  )
+   
+  ms$Sn <- (ms$Sm - genesets.length.null.mean[ms$n]) / 
+                    genesets.length.null.sd[ms$n]
+
+  # remove n to match output of previous versions
+  ms <- ms[-2]
+  ms_ordered <- ms[order(ms$Sn, decreasing = TRUE),]
   
   # save results
   res.list <- list()
