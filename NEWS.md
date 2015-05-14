@@ -1,3 +1,9 @@
+# dmGWAS 0.0.2
+
+## New features
+
+* Added tests to directly compare results from EW_dmGWAS and dmGWAS2
+
 # dmGWAS2 0.0.1
 
 ## New features
