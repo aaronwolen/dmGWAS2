@@ -38,6 +38,7 @@ process. Greater r will generate smaller module. Default is 0.1.}
 
  \tabular{ll}{
    \code{GWPI} \tab the edge-weighted network used for searching \cr
+   \code{lambda} \tab lambda coefficient \cr
    \code{genesets} \tab list of genes comprising each dense module, named for the seed gene \cr
    \code{genesets.length.null.dis} \tab randomization data for normalization \cr
    \code{module.score.matrix} \tab contains Sm and Sn \cr

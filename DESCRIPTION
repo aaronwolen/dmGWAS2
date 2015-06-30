@@ -1,6 +1,6 @@
 Package: dmGWAS2
 Type: Package
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Title: A fork of EW_dmGWAS
 Description: dmGWAS2 is a fork of EW_dmGWAS, the edge-weighted dense module 
     search algorithm for genome-wide association studies, which searches for
