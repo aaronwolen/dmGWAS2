@@ -12,12 +12,13 @@ if ( requireNamespace("dmGWAS") ) {
   
   g1 <-  dmGWAS::generate_graph(exp.case, exp.ctrl, network, geneweight)
   g2 <- dmGWAS2::generate_graph(exp.case, exp.ctrl, network, geneweight)
-  test_that("generate_graph", expect_identical(g2, g1))
+  test_that("generate_graph", igraph::identical_graphs(g1, g2))
   
   
   dm1 <-  dmGWAS:::globalQueryJ(g1)
   dm2 <- dmGWAS2:::globalQueryJ(g1)
-  test_that("globalQueryJ", expect_identical(dm2, dm1))
+  
+  test_that("globalQueryJ", all(mapply(igraph::identical_graphs, dm1, dm2)))
   
   
   rm1 <-  dmGWAS:::random_network(5, g1, 0.5)
