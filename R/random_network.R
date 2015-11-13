@@ -1,10 +1,10 @@
 
-random_network<-function(size,G,lambda) {
+random_network<-function(size,G,lambda,nperm = 10000) {
 
  genes.idx <- V(G)$name
  
  l.zperm <- c()
- while(length(l.zperm)<10000)
+ while(length(l.zperm)<nperm)
  {
   seed<-sample(genes.idx,1) 
   while( length(seed)<size )

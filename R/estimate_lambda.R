@@ -20,13 +20,13 @@
 #' @seealso \code{\link{generate_graph}}
 #' @export
 
-estimate_lambda<-function(G)
+estimate_lambda<-function(G, nperm = 10000)
 {
  genes.idx <- V(G)$name
  l.zperm <- c()
 
 
- while(length(l.zperm)<10000)
+ while(length(l.zperm) < nperm)
  {
   size<-sample(5:20,1)
   seed<-sample(genes.idx,1) 
